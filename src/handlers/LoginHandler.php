@@ -1,7 +1,6 @@
 <?php
 namespace src\handlers;
 
-use PDO;
 use \src\models\User;
 
 class LoginHandler {
