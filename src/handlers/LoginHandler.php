@@ -1,22 +1,25 @@
 <?php
 namespace src\handlers;
 
+use PDO;
 use \src\models\User;
 
 class LoginHandler {
 
-    public static function CheckLogin()
+    public static function checkLogin()
     {
         if(!empty($_SESSION['token'])){
             $token = $_SESSION['token'];
 
             $data = User::select()->where('token', $token)->one();
+            if(!$data) return false;
+            
             if(count($data) > 0) {
 
                 $loggedUser = new User();
                 $loggedUser->id = $data['id'];
-                $loggedUser->email = $data['email'];
                 $loggedUser->name = $data['name'];
+                $loggedUser->avatar = $data['avatar'];
 
                 return $loggedUser;
             }
@@ -35,7 +38,8 @@ class LoginHandler {
 
                 User::update()
                     ->set('token', $token)
-                    ->where('email', $email);
+                    ->where('email', $email)
+                    ->execute();
                     
                 return $token;
             }
