@@ -2,7 +2,7 @@
 namespace src\controllers;
 
 use \core\Controller;
-use src\handlers\LoginHandler;
+use src\handlers\UserHandler;
 
 class LoginController extends Controller {
 
@@ -28,7 +28,7 @@ class LoginController extends Controller {
             $this->redirect('/login');
         }
 
-        $token = LoginHandler::verifyLogin($email, $password);
+        $token = UserHandler::verifyLogin($email, $password);
         if(!$token) {
             $_SESSION['flash'] = 'Email e/ou senha não conferem.';
             $this->redirect('/login');
@@ -73,12 +73,12 @@ class LoginController extends Controller {
             $this->redirect('/cadastro');
         }
 
-        if(LoginHandler::emailExists($email)) {
+        if(UserHandler::emailExists($email)) {
             $_SESSION['flash'] = 'Email já cadastrado';
             $this->redirect('/cadastro');
         }
 
-        $token = LoginHandler::addUser($name, $email, $password, $birthdate);
+        $token = UserHandler::addUser($name, $email, $password, $birthdate);
         $_SESSION['token'] = $token;
         $this->redirect('/');
     }

@@ -3,14 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2020 at 06:49 PM
+-- Generation Time: Jul 31, 2020 at 03:47 PM
 -- Server version: 10.5.4-MariaDB-1:10.5.4+maria~focal
 -- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "-03:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `devsbook`
 --
-CREATE DATABASE IF NOT EXISTS `devsbook` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `devsbook`;
 
 -- --------------------------------------------------------
 
@@ -89,11 +87,11 @@ CREATE TABLE `users` (
   `password` varchar(256) NOT NULL,
   `name` varchar(128) NOT NULL,
   `birthdate` date NOT NULL,
-  `city` varchar(128) NOT NULL,
-  `work` varchar(128) NOT NULL,
-  `avatar` varchar(128) NOT NULL,
-  `cover` varchar(128) NOT NULL,
-  `token` varchar(256) NOT NULL
+  `city` varchar(128) DEFAULT NULL,
+  `work` varchar(128) DEFAULT NULL,
+  `avatar` varchar(128) DEFAULT 'avatar.jpg',
+  `cover` varchar(128) DEFAULT 'cover.jpg',
+  `token` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
