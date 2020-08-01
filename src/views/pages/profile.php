@@ -18,6 +18,11 @@
                                 <div class="profile-info-location"><?= $user->city ?? ''; ?></div>
                             </div>
                             <div class="profile-info-data row">
+                                <?php if($user->id !== $loggedUser->id): ?>
+                                <div class="profile-info-item m-width-20">
+                                    <a class="button" href="<?= $base; ?>/perfil/<?= $user->id; ?>/follow"><?= !$isFollowing ? 'Seguir' : 'Deixar de seguir'; ?></a>
+                                </div>
+                                <?php endif; ?>
                                 <div class="profile-info-item m-width-20">
                                     <div class="profile-info-item-n"><?= count($user->followers); ?></div>
                                     <div class="profile-info-item-s">Seguidores</div>
