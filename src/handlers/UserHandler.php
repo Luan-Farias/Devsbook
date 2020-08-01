@@ -155,4 +155,25 @@ class UserHandler {
             ->execute();
     }
 
+    public static function searchUsers($searchTerm)
+    {
+        $users = [];
+        $data = User::select()
+            ->where('name', 'like', '%' . $searchTerm .'%')
+            ->get();
+
+        if($data) {
+            foreach($data as $user) {
+                $newUser = new User;
+                $newUser->id = $user['id'];
+                $newUser->name = $user['name'];
+                $newUser->avatar = $user['avatar'];
+
+                $users[] = $newUser;
+            }
+        }
+
+        return $users;
+    }
+
 }
