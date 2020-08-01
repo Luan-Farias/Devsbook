@@ -24,7 +24,7 @@ $router->get('/fotos', 'ProfileController@photos');
 
 $router->get('/pesquisa', 'SearchController@index');
 
-$router->get('/sair', 'LoginController@logout');
+$router->get('/config', 'ConfigController@index');
+$router->post('/config', 'ConfigController@save');
 
-// $router->get('/fotos');
-// $router->get('/config');
+$router->get('/sair', 'LoginController@logout');

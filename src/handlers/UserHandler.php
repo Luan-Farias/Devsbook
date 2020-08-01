@@ -6,7 +6,7 @@ use src\models\UserRelation;
 
 class UserHandler {
 
-    public static function checkLogin()
+    public static function checkLogin($allFields = false)
     {
         if(!empty($_SESSION['token'])){
             $token = $_SESSION['token'];
@@ -20,6 +20,15 @@ class UserHandler {
                 $loggedUser->id = $data['id'];
                 $loggedUser->name = $data['name'];
                 $loggedUser->avatar = $data['avatar'];
+
+                if($allFields) {
+                    $loggedUser->birthdate = $data['birthdate'];
+                    $loggedUser->email = $data['email'];
+                    $loggedUser->password = $data['password'];
+                    $loggedUser->city = $data['city'];
+                    $loggedUser->work = $data['work'];
+                    $loggedUser->cover = $data['cover'];
+                }
 
                 return $loggedUser;
             }
@@ -127,6 +136,21 @@ class UserHandler {
         ])->execute();
 
         return $token;
+    }
+
+    public static function updateUser($updatedFields)
+    {
+        User::update()
+            ->set('name', $updatedFields['name'])
+            ->set('email', $updatedFields['email'])
+            ->set('birthdate', $updatedFields['birthdate'])
+            ->set('password', $updatedFields['password'])
+            ->set('city', $updatedFields['city'])
+            ->set('work', $updatedFields['work'])
+            ->set('avatar', $updatedFields['avatar'])
+            ->set('cover', $updatedFields['cover'])
+            ->where('id', $updatedFields['id'])
+            ->execute();
     }
 
     public static function isFollowing($from, $to)

@@ -431,6 +431,44 @@ header .head-side {
     background-color:#477dbb;
 }
 
+.form-config {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-config label {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-config label input {
+    margin: 5px;
+    width: 100%;
+    padding: 7px;
+}
+
+.form-config label input[type=file] {
+    margin: 10px;
+}
+.form-config label.submit {
+    width: 150px;
+    height: 50px;
+} 
+
+.form-config label.submit input {
+    height: 100%;
+}
+
+.flash {
+    border: 2px solid red;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    margin: 20px;
+}
+
 @media (max-width: 992px) {
     header .head-side-right {
         display:none !important;
