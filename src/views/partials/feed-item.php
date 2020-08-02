@@ -33,17 +33,20 @@
             <div class="msg-btn"><?= count($data->comments) ?></div>
         </div>
         <div class="feed-item-comments">
-            
-            <!-- <div class="fic-item row m-height-10 m-width-20">
-                <div class="fic-item-photo">
-                    <a href=""><img src="media/avatars/avatar.jpg" /></a>
-                </div>
-                <div class="fic-item-info">
-                    <a href="">Bonieky Lacerda</a>
-                    Comentando no meu próprio post
-                </div>
-            </div> -->
 
+            <div class="feed-item-comments area">
+                <?php foreach ($data->comments as $item) :?>
+                    <div class="fic-item row m-height-10 m-width-20">
+                        <div class="fic-item-photo">
+                            <a href="<?= $base; ?>/perfil/<?= $item['user']['id']; ?>"><img src="<?= $base; ?>/media/avatars/<?= $item['user']['avatar']; ?>" /></a>
+                        </div>
+                        <div class="fic-item-info">
+                            <a href="<?= $base; ?>/perfil/<?= $item['user']['id']; ?>"><?= $item['user']['name']; ?></a>
+                            <?= $item['body']; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>         
             <div class="fic-answer row m-height-10 m-width-20">
                 <div class="fic-item-photo">
                     <a href="<?= $base;  ?>/perfil/<?= $loggedUser->id; ?>"><img src="<?= $base; ?>/media/avatars/<?= $loggedUser->avatar; ?>" /></a>
