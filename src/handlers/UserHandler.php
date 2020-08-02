@@ -138,7 +138,7 @@ class UserHandler {
         return $token;
     }
 
-    public static function updateUser($updatedFields)
+    public static function updateUser($updatedFields,  $idUser)
     {
         User::update()
             ->set('name', $updatedFields['name'])
@@ -149,7 +149,7 @@ class UserHandler {
             ->set('work', $updatedFields['work'])
             ->set('avatar', $updatedFields['avatar'])
             ->set('cover', $updatedFields['cover'])
-            ->where('id', $updatedFields['id'])
+            ->where('id', $idUser)
             ->execute();
     }
 

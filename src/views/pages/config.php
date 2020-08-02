@@ -6,18 +6,20 @@
     <section class="feed mt-10">
         <h1>Configurações</h1>
         <div class="row">
-            <form action="<?= $base; ?>/config" method="post" class="form-config">
+            <form  enctype="multipart/form-data" action="<?= $base; ?>/config" method="post" class="form-config">
                 <?php  if(!empty($flash)): ?>
                     <div class="flash"><?= $flash; ?></div>
                 <?php endif; ?>
                 <label>
                     <span>Novo Avatar:</span>
                     <input type="file" name="avatar" id="avatar" />
+                    <img src="<?= $base; ?>/media/avatars/<?= $loggedUser->avatar; ?>" alt="Seu Avatar" width="200"/>
                 </label>
 
                 <label>
                     <span>Nova Capa:</span>
                     <input type="file" name="cover" id="cover" />
+                    <img src="<?= $base; ?>/media/covers/<?= $loggedUser->cover; ?>" alt="Seu Avatar" style="width: 320px; margin-bottom: 10px;" />
                 </label>
 
                 <hr/>
