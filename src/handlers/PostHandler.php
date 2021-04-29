@@ -43,7 +43,7 @@ class PostHandler {
             $newPost->user->avatar = $newUser['avatar'];
             $newPost->mine = false;
 
-            if($postItem['id_user'] === $$loggedUserId) {
+            if($postItem['id_user'] === $loggedUserId) {
                 $newPost->mine = true;
             }
 
@@ -193,6 +193,30 @@ class PostHandler {
         }
 
         return $photos;
+    }
+
+    public static function delete($postId, $loggedUserId) {
+        $post = Post::select()
+            ->where('id', $postId)
+            ->where('id_user', $loggedUserId)
+            ->get();
+
+        if (!count($post) > 0)
+            return;
+        
+        $post = $post[0];
+
+        PostLike::delete()->where('id_post', $postId)->execute();
+        PostComment::delete()->where('id_post', $postId)->execute();
+
+        if ($post['type'] === 'photo') {
+            $image = __DIR__ . '/../../public/media/uploads/' . $post['body'];
+            if (file_exists($image)) {
+                unlink($image);
+            }
+        }
+
+        Post::delete()->where('id', $postId)->execute();
     }
 
 }

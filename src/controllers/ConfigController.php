@@ -140,7 +140,7 @@ class ConfigController extends Controller {
             case 'image/jpg':
                 $image = imagecreatefromjpeg($file['tmp_name']);
                 break;
-            case 'image/pgn':
+            case 'image/png':
                 $image = imagecreatefrompng($file['tmp_name']);
                 break;
         }
